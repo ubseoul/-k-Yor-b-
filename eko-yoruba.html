@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Èkó Yorùbá — Learn Yoruba</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-2: #F5F4F0;
+  --border: #E8E6E1;
+  --text: #1A1A18;
+  --text-2: #6B6963;
+  --text-3: #9C9890;
+  --accent: #2D6A4F;
+  --accent-light: #D8F3DC;
+  --accent-dark: #1B4332;
+  --warm: #D4A373;
+  --warm-light: #FEFAE0;
+  --error: #BC4749;
+  --error-light: #FDE8E8;
+  --success: #2D6A4F;
+  --success-light: #D8F3DC;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* ─── Header ─── */
+.header {
+  padding: 16px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-back {
+  width: 40px; height: 40px;
+  border: none; background: var(--surface-2);
+  border-radius: 12px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.header-back:hover { background: var(--border); }
+.header-back svg { width: 20px; height: 20px; color: var(--text); }
+
+.header-title {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+}
+
+.header-streak {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600;
+  color: var(--warm);
+  background: var(--warm-light);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* ─── Home Screen ─── */
+.home { padding: 20px; padding-bottom: 100px; }
+
+.home-hero {
+  text-align: center;
+  padding: 40px 20px 32px;
+}
+
+.home-hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.home-hero p {
+  color: var(--text-2);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.progress-overview {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.progress-bar-container {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  flex: 1; height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #52B788);
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.progress-label {
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.progress-stats {
+  display: flex; gap: 16px; margin-top: 14px;
+}
+
+.progress-stat {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background: var(--surface-2);
+  border-radius: var(--radius-sm);
+}
+
+.progress-stat-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Fraunces', serif;
+}
+
+.progress-stat-label {
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -0.3px;
+}
+
+.unit-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.unit-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.unit-card.locked { opacity: 0.5; pointer-events: none; }
+
+.unit-card-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.unit-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-light);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.unit-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+
+.unit-card p {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+.unit-lessons {
+  display: flex; gap: 4px; margin-top: 12px;
+}
+
+.unit-lesson-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.unit-lesson-dot.done { background: var(--accent); }
+.unit-lesson-dot.current { background: var(--warm); }
+
+.unit-emoji {
+  font-size: 28px;
+  margin-top: -2px;
+}
+
+/* ─── Unit View ─── */
+.unit-view { padding: 20px; padding-bottom: 100px; }
+
+.unit-view-header {
+  text-align: center;
+  padding: 20px 0 28px;
+}
+
+.unit-view-header h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 4px;
+}
+
+.unit-view-header p {
+  color: var(--text-2);
+  font-size: 15px;
+}
+
+.lesson-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lesson-card:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.lesson-card.locked { opacity: 0.45; pointer-events: none; }
+
+.lesson-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 600;
+  flex-shrink: 0;
+}
+
+.lesson-icon.vocab { background: var(--accent-light); color: var(--accent-dark); }
+.lesson-icon.flash { background: #FFF3CD; color: #856404; }
+.lesson-icon.quiz { background: #D6E9FF; color: #1A4B8C; }
+.lesson-icon.dialogue { background: #F3E5F5; color: #6A1B9A; }
+.lesson-icon.culture { background: var(--warm-light); color: #8B6914; }
+.lesson-icon.done { background: var(--success-light); color: var(--success); }
+
+.lesson-info { flex: 1; }
+.lesson-info h4 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.lesson-info p { font-size: 13px; color: var(--text-3); }
+
+.lesson-check {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.lesson-check.done {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.lesson-check.done svg { display: block; }
+
+/* ─── Vocabulary Lesson ─── */
+.vocab-view { padding: 20px; padding-bottom: 100px; }
+
+.vocab-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.vocab-yoruba {
+  font-family: 'Fraunces', serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+  color: var(--accent-dark);
+}
+
+.vocab-phonetic {
+  font-size: 16px;
+  color: var(--text-3);
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.vocab-english {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.vocab-context {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+.tone-display {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  margin: 16px 0;
+  height: 50px;
+}
+
+.tone-syllable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.tone-bar {
+  width: 32px;
+  border-radius: 4px;
+  transition: height 0.3s;
+}
+
+.tone-bar.high { height: 44px; background: var(--accent); }
+.tone-bar.mid { height: 28px; background: var(--warm); }
+.tone-bar.low { height: 16px; background: var(--error); }
+
+.tone-label {
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+.speak-btn {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(45,106,79,0.3);
+}
+
+.speak-btn:hover { transform: scale(1.08); }
+.speak-btn:active { transform: scale(0.95); }
+.speak-btn svg { width: 24px; height: 24px; }
+
+.vocab-nav {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.vocab-nav-btn {
+  padding: 14px 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.vocab-nav-btn:hover { background: var(--surface-2); }
+
+.vocab-nav-btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+.vocab-nav-btn.primary:hover { background: var(--accent-dark); }
+
+.vocab-counter {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+
+/* ─── Flashcard Mode ─── */
+.flashcard-area {
+  perspective: 1000px;
+  margin-bottom: 20px;
+}
+
+.flashcard {
+  background: var(--surface);
+  border-radius: var(--radius);
+  min-height: 280px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.flashcard.flipped { transform: rotateY(180deg); }
+
+.flashcard-front, .flashcard-back {
+  backface-visibility: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px;
+}
+
+.flashcard-back { transform: rotateY(180deg); }
+
+.flashcard-tap {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-top: 12px;
+}
+
+.flashcard-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.flash-btn {
+  flex: 1;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.flash-btn.again {
+  background: var(--error-light);
+  color: var(--error);
+}
+.flash-btn.hard {
+  background: #FFF3CD;
+  color: #856404;
+}
+.flash-btn.good {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+/* ─── Quiz Mode ─── */
+.quiz-view { padding: 20px; padding-bottom: 100px; }
+
+.quiz-progress {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+}
+
+.quiz-dot {
+  flex: 1;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.3s;
+}
+.quiz-dot.correct { background: var(--accent); }
+.quiz-dot.wrong { background: var(--error); }
+.quiz-dot.current { background: var(--warm); }
+
+.quiz-question {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+
+.quiz-question-label {
+  font-size: 13px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.quiz-question-text {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quiz-option {
+  padding: 18px 20px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.quiz-option:hover { border-color: var(--accent); background: var(--accent-light); }
+.quiz-option.selected { border-color: var(--accent); background: var(--accent-light); }
+.quiz-option.correct { border-color: var(--success); background: var(--success-light); }
+.quiz-option.wrong { border-color: var(--error); background: var(--error-light); }
+.quiz-option.disabled { pointer-events: none; }
+
+.quiz-feedback {
+  text-align: center;
+  padding: 20px;
+  margin-top: 16px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 500;
+  animation: fadeUp 0.3s ease;
+}
+
+.quiz-feedback.correct { background: var(--success-light); color: var(--success); }
+.quiz-feedback.wrong { background: var(--error-light); color: var(--error); }
+
+.quiz-next {
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.quiz-next:hover { background: var(--accent-dark); }
+
+/* ─── Dialogue Mode ─── */
+.dialogue-view { padding: 20px; padding-bottom: 100px; }
+
+.dialogue-scene {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.dialogue-scene-label {
+  font-size: 12px; color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dialogue-scene p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.dialogue-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dialogue-msg {
+  max-width: 85%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  animation: fadeUp 0.3s ease;
+}
+
+.dialogue-msg.grandma {
+  align-self: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 6px;
+}
+
+.dialogue-msg.you {
+  align-self: flex-end;
+  background: var(--accent);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.dialogue-msg .msg-speaker {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.dialogue-msg .msg-translation {
+  font-size: 12px;
+  margin-top: 6px;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.dialogue-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dialogue-choices label {
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+
+.dialogue-choice {
+  padding: 16px 18px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+}
+
+.dialogue-choice:hover { border-color: var(--accent); }
+.dialogue-choice.correct { border-color: var(--success); background: var(--success-light); }
+.dialogue-choice.wrong { border-color: var(--error); background: var(--error-light); }
+
+.dialogue-choice .choice-yoruba { font-weight: 600; margin-bottom: 2px; }
+.dialogue-choice .choice-english { font-size: 13px; color: var(--text-2); }
+
+/* ─── Culture Note ─── */
+.culture-view { padding: 20px; padding-bottom: 100px; }
+
+.culture-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.culture-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.culture-card p {
+  font-size: 15px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.culture-highlight {
+  background: var(--warm-light);
+  border-left: 3px solid var(--warm);
+  padding: 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 16px 0;
+}
+
+.culture-highlight p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ─── Completion Screen ─── */
+.complete-screen {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.complete-emoji { font-size: 64px; margin-bottom: 20px; }
+
+.complete-screen h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.complete-screen p {
+  color: var(--text-2);
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.complete-stats {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.complete-stat {
+  text-align: center;
+}
+
+.complete-stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'Fraunces', serif;
+}
+
+.complete-stat-label {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { animation: fadeUp 0.4s ease; }
+
+/* ─── Tone Legend ─── */
+.tone-legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.tone-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tone-legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+}
+
+.tone-legend-dot.high { background: var(--accent); }
+.tone-legend-dot.mid { background: var(--warm); }
+.tone-legend-dot.low { background: var(--error); }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 0; }
+
+/* ─── Review All button ─── */
+.review-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 2px dashed var(--border);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  margin-top: 16px;
+}
+
+.review-btn:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="app" id="app"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// COMPLETE YORUBA CURRICULUM DATA
+// ═══════════════════════════════════════════════════════════
+
+const CURRICULUM = [
+  // ─── UNIT 1: GREETINGS & RESPECT ───
+  {
+    id: 'greetings',
+    title: 'Greetings & Respect',
+    subtitle: 'The foundation of every conversation',
+    emoji: '🙏',
+    vocab: [
+      { yoruba: 'Ẹ kú àárọ̀', english: 'Good morning', phonetic: 'eh koo AH-ro', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'àá',t:'low'},{s:'rọ̀',t:'low'}], context: 'Used when greeting elders in the morning. The "Ẹ" makes it respectful.' },
+      { yoruba: 'Ẹ kú ọ̀sán', english: 'Good afternoon', phonetic: 'eh koo OH-san', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'ọ̀',t:'low'},{s:'sán',t:'high'}], context: 'Afternoon greeting for elders. Shows respect with the "Ẹ" prefix.' },
+      { yoruba: 'Ẹ kú irọ́lẹ́', english: 'Good evening', phonetic: 'eh koo ee-RO-leh', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'i',t:'mid'},{s:'rọ́',t:'high'},{s:'lẹ́',t:'high'}], context: 'Evening greeting for elders. Use this when you visit grandma in the evening.' },
+      { yoruba: 'Ẹ kú alẹ́', english: 'Good night', phonetic: 'eh koo ah-LEH', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'a',t:'mid'},{s:'lẹ́',t:'high'}], context: 'Night greeting or goodbye at night.' },
+      { yoruba: 'Ẹ kàásán', english: 'Good day', phonetic: 'eh KAH-san', tones: [{s:'Ẹ',t:'mid'},{s:'kà',t:'low'},{s:'á',t:'high'},{s:'sán',t:'high'}], context: 'A general daytime greeting you can use anytime.' },
+      { yoruba: 'Ó dàbọ̀', english: 'Goodbye', phonetic: 'oh DAH-boh', tones: [{s:'Ó',t:'high'},{s:'dà',t:'low'},{s:'bọ̀',t:'low'}], context: 'Said to the person leaving. Literally means "until we meet again."' },
+      { yoruba: 'Ẹ ṣé', english: 'Thank you', phonetic: 'eh SHEH', tones: [{s:'Ẹ',t:'mid'},{s:'ṣé',t:'high'}], context: 'Respectful thank you. Drop the "Ẹ" for casual use with peers: "Ó ṣé"' },
+      { yoruba: 'Ẹ kú ilé', english: 'Welcome home', phonetic: 'eh koo ee-LEH', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'i',t:'mid'},{s:'lé',t:'high'}], context: 'Said to someone returning home. Grandma might say this when you visit!' },
+      { yoruba: 'Ẹ kú iṣẹ́', english: 'Well done / greetings for work', phonetic: 'eh koo ee-SHEH', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'i',t:'mid'},{s:'ṣẹ́',t:'high'}], context: 'Said to acknowledge someone working or busy. Very common greeting.' },
+      { yoruba: 'Bàwọ́ ni', english: 'How are you?', phonetic: 'BAH-wo nee', tones: [{s:'Bà',t:'low'},{s:'wọ́',t:'high'},{s:'ni',t:'mid'}], context: 'Casual way to ask how someone is.' },
+    ],
+    dialogues: [
+      {
+        scene: 'You arrive at grandma\'s house in the morning.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Ẹ kàásán, ọmọ mi!', english: 'Good day, my child!' },
+          {
+            speaker: 'you', prompt: 'Greet grandma back:',
+            choices: [
+              { yoruba: 'Ẹ kú àárọ̀, Màmá!', english: 'Good morning, Mama!', correct: true },
+              { yoruba: 'Ó dàbọ̀', english: 'Goodbye', correct: false },
+              { yoruba: 'Bàwọ́ ni', english: 'How are you?', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ṣé dáadáa ni?', english: 'Is everything well?' },
+          {
+            speaker: 'you', prompt: 'Respond that you are fine:',
+            choices: [
+              { yoruba: 'Ẹ ṣé, Màmá', english: 'Thank you, Mama', correct: false },
+              { yoruba: 'Dáadáa ni, Màmá. Ẹ ṣé', english: 'It is well, Mama. Thank you', correct: true },
+              { yoruba: 'Ó dàbọ̀, Màmá', english: 'Goodbye, Mama', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'Why Greetings Matter So Much',
+      paragraphs: [
+        'In Yoruba culture, greetings are not just polite — they are essential. Failing to greet an elder properly is considered deeply disrespectful. When you greet your grandma well, you are showing her that you value her, her age, and your relationship.',
+        'Traditionally, young men prostrate (dọ̀bálẹ̀ — lying flat on the ground) and young women kneel (kúnlẹ̀) when greeting elders. Even if you don\'t do the full prostration, bowing your head or kneeling slightly shows deep respect.',
+        'Yoruba has different greetings for different times of day, different situations (arriving, leaving, working, eating, waking up), and even for different events (celebrations, condolences). Learning these shows cultural awareness.',
+      ],
+      highlight: 'Tip: When you see grandma, greet her FIRST before saying anything else. Start with the time-appropriate greeting, then ask how she is. This alone will make her beam with pride.'
+    }
+  },
+
+  // ─── UNIT 2: FAMILY & IDENTITY ───
+  {
+    id: 'family',
+    title: 'Family & Identity',
+    subtitle: 'Know your people, introduce yourself',
+    emoji: '👨‍👩‍👧‍👦',
+    vocab: [
+      { yoruba: 'Ìyá mi', english: 'My mother', phonetic: 'EE-yah mee', tones: [{s:'Ì',t:'low'},{s:'yá',t:'high'},{s:'mi',t:'mid'}], context: 'How you refer to your mother. "Mi" means "my."' },
+      { yoruba: 'Bàbá mi', english: 'My father', phonetic: 'BAH-bah mee', tones: [{s:'Bà',t:'low'},{s:'bá',t:'high'},{s:'mi',t:'mid'}], context: 'How you refer to your father.' },
+      { yoruba: 'Ìyá àgbà', english: 'Grandmother', phonetic: 'EE-yah AHG-bah', tones: [{s:'Ì',t:'low'},{s:'yá',t:'high'},{s:'àg',t:'low'},{s:'bà',t:'low'}], context: 'Literally "elder mother." This is grandma!' },
+      { yoruba: 'Bàbá àgbà', english: 'Grandfather', phonetic: 'BAH-bah AHG-bah', tones: [{s:'Bà',t:'low'},{s:'bá',t:'high'},{s:'àg',t:'low'},{s:'bà',t:'low'}], context: 'Literally "elder father." This is grandpa.' },
+      { yoruba: 'Ọmọ', english: 'Child', phonetic: 'OH-moh', tones: [{s:'Ọ',t:'mid'},{s:'mọ',t:'mid'}], context: 'Grandma might call you "ọmọ mi" — my child.' },
+      { yoruba: 'Ẹ̀gbọ́n', english: 'Older sibling', phonetic: 'EHG-bon', tones: [{s:'Ẹ̀g',t:'low'},{s:'bọ́n',t:'high'}], context: 'Used for any older sibling, male or female.' },
+      { yoruba: 'Àbúrò', english: 'Younger sibling', phonetic: 'AH-boo-roh', tones: [{s:'À',t:'low'},{s:'bú',t:'high'},{s:'rò',t:'low'}], context: 'Used for any younger sibling.' },
+      { yoruba: 'Orúkọ mi ni...', english: 'My name is...', phonetic: 'oh-ROO-koh mee nee', tones: [{s:'O',t:'mid'},{s:'rú',t:'high'},{s:'kọ',t:'mid'},{s:'mi',t:'mid'},{s:'ni',t:'mid'}], context: 'How you introduce yourself. Example: "Orúkọ mi ni David."' },
+      { yoruba: 'Ẹbí', english: 'Family', phonetic: 'EH-bee', tones: [{s:'Ẹ',t:'mid'},{s:'bí',t:'high'}], context: 'Family is central to Yoruba life. "Ẹbí mi" = my family.' },
+      { yoruba: 'Àánú', english: 'Love / Mercy', phonetic: 'AH-noo', tones: [{s:'Àá',t:'low'},{s:'nú',t:'high'}], context: 'Deep love or compassion. "Mo nífẹ̀ẹ rẹ" is "I love you."' },
+    ],
+    dialogues: [
+      {
+        scene: 'Grandma\'s friend visits and asks who you are.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Wá, sọ orúkọ rẹ fún Màmá Adé.', english: 'Come, tell Mama Ade your name.' },
+          {
+            speaker: 'you', prompt: 'Introduce yourself:',
+            choices: [
+              { yoruba: 'Orúkọ mi ni... Mo jẹ́ ọmọ ọmọ rẹ̀.', english: 'My name is... I am her grandchild.', correct: true },
+              { yoruba: 'Ẹ kú àárọ̀', english: 'Good morning', correct: false },
+              { yoruba: 'Ẹ ṣé', english: 'Thank you', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ọmọ mi ni yìí! Ó dára púpọ̀.', english: 'This is my grandchild! Very good.' },
+          {
+            speaker: 'you', prompt: 'Thank grandma\'s friend:',
+            choices: [
+              { yoruba: 'Ó dàbọ̀', english: 'Goodbye', correct: false },
+              { yoruba: 'Ẹ ṣé, Màmá Adé.', english: 'Thank you, Mama Ade.', correct: true },
+              { yoruba: 'Bàwọ́ ni?', english: 'How are you?', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'Family Structure in Yoruba Culture',
+      paragraphs: [
+        'In Yoruba culture, "family" extends far beyond the nuclear family. Cousins are treated like siblings, your parents\' friends are "aunties" and "uncles," and the community plays a major role in raising children.',
+        'Age determines everything in family dynamics. You always greet elders first, use respectful pronouns ("Ẹ" instead of "O"), and defer to those older than you. This is not about being submissive — it\'s about showing recognition and love.',
+        'Your grandma likely expects you to know your family lineage. Yoruba names often tell a story — they can describe the circumstances of a child\'s birth, the family\'s faith, or hopes for the child\'s future.',
+      ],
+      highlight: 'Ask your grandma: "Kí ni ìtàn orúkọ mi?" (What is the story of my name?). She will love telling you, and it\'s a beautiful way to connect.'
+    }
+  },
+
+  // ─── UNIT 3: EVERYDAY CONVERSATIONS ───
+  {
+    id: 'everyday',
+    title: 'Everyday Talk',
+    subtitle: 'Feelings, needs, and daily expressions',
+    emoji: '💬',
+    vocab: [
+      { yoruba: 'Mo wà dáadáa', english: 'I am fine', phonetic: 'moh wah DAH-dah', tones: [{s:'Mo',t:'mid'},{s:'wà',t:'low'},{s:'dáa',t:'high'},{s:'dáa',t:'high'}], context: 'The standard response when someone asks how you are.' },
+      { yoruba: 'Ebi ń pa mí', english: 'I am hungry', phonetic: 'EH-bee n pa mee', tones: [{s:'E',t:'mid'},{s:'bi',t:'mid'},{s:'ń',t:'mid'},{s:'pa',t:'mid'},{s:'mí',t:'high'}], context: 'Literally "hunger is killing me." Grandma will feed you immediately!' },
+      { yoruba: 'Omi', english: 'Water', phonetic: 'oh-MEE', tones: [{s:'O',t:'mid'},{s:'mi',t:'mid'}], context: '"Mo fẹ́ omi" = I want water.' },
+      { yoruba: 'Mo dúpẹ́', english: 'I am grateful', phonetic: 'moh DOO-peh', tones: [{s:'Mo',t:'mid'},{s:'dú',t:'high'},{s:'pẹ́',t:'high'}], context: 'A deeper thank you, expressing real gratitude.' },
+      { yoruba: 'Ó dára', english: 'It is good / fine', phonetic: 'oh DAH-rah', tones: [{s:'Ó',t:'high'},{s:'dá',t:'high'},{s:'ra',t:'mid'}], context: 'Used to agree or say something is fine.' },
+      { yoruba: 'Jọ̀wọ́', english: 'Please', phonetic: 'JOH-woh', tones: [{s:'Jọ̀',t:'low'},{s:'wọ́',t:'high'}], context: 'Essential polite word. Use before requests.' },
+      { yoruba: 'Má bínú', english: 'Don\'t be angry / Sorry', phonetic: 'mah BEE-noo', tones: [{s:'Má',t:'high'},{s:'bí',t:'high'},{s:'nú',t:'high'}], context: 'Used to apologize or calm someone. Very useful!' },
+      { yoruba: 'Mo nífẹ̀ẹ rẹ', english: 'I love you', phonetic: 'moh NEE-feh reh', tones: [{s:'Mo',t:'mid'},{s:'ní',t:'high'},{s:'fẹ̀',t:'low'},{s:'ẹ',t:'mid'},{s:'rẹ',t:'mid'}], context: 'Tell grandma this. It will make her day.' },
+      { yoruba: 'Bẹ́ẹ̀ ni', english: 'Yes / That\'s right', phonetic: 'BEH-nee', tones: [{s:'Bẹ́',t:'high'},{s:'ẹ̀',t:'low'},{s:'ni',t:'mid'}], context: 'To agree with someone or say yes.' },
+      { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No / That\'s not right', phonetic: 'BEH-koh', tones: [{s:'Bẹ́',t:'high'},{s:'ẹ̀',t:'low'},{s:'kọ́',t:'high'}], context: 'To disagree or say no.' },
+    ],
+    dialogues: [
+      {
+        scene: 'Grandma asks how you\'re doing and if you need anything.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Ṣé o wà dáadáa?', english: 'Are you fine?' },
+          {
+            speaker: 'you', prompt: 'Tell her you\'re fine:',
+            choices: [
+              { yoruba: 'Mo wà dáadáa, Màmá. Ẹ ṣé.', english: 'I am fine, Mama. Thank you.', correct: true },
+              { yoruba: 'Ebi ń pa mí', english: 'I am hungry', correct: false },
+              { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ṣé ebi ń pa ọ́?', english: 'Are you hungry?' },
+          {
+            speaker: 'you', prompt: 'Tell her yes, you\'re a bit hungry:',
+            choices: [
+              { yoruba: 'Má bínú', english: 'Sorry', correct: false },
+              { yoruba: 'Bẹ́ẹ̀ ni, Màmá. Ebi ń pa mí díẹ̀.', english: 'Yes, Mama. I\'m a little hungry.', correct: true },
+              { yoruba: 'Ó dàbọ̀', english: 'Goodbye', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ó dára! Má bọ̀, oúnjẹ ti ṣetán.', english: 'Good! Come, food is ready.' },
+          {
+            speaker: 'you', prompt: 'Express gratitude:',
+            choices: [
+              { yoruba: 'Mo dúpẹ́, Màmá! Mo nífẹ̀ẹ rẹ.', english: 'I\'m grateful, Mama! I love you.', correct: true },
+              { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No', correct: false },
+              { yoruba: 'Ẹ kú àárọ̀', english: 'Good morning', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'The Art of Yoruba Politeness',
+      paragraphs: [
+        '"Jọ̀wọ́" (please) and "Ẹ ṣé" (thank you) go a long way, but Yoruba politeness runs deeper than just words. Tone of voice, body language, and timing all matter. Speaking softly to elders, not interrupting, and responding promptly to greetings are all important.',
+        '"Má bínú" is one of the most useful phrases you\'ll learn. It\'s used not just for genuine apologies but also as a softener — before disagreeing, before asking a favor, or when you need to get someone\'s attention. Think of it like "excuse me" and "I\'m sorry" combined.',
+        'When grandma offers you food, the polite response is to accept with both hands and say "Ẹ ṣé, Màmá." Declining food from an elder can sometimes be seen as disrespectful, though a gentle "Mo ti jẹun" (I have eaten) works if you truly can\'t eat.',
+      ],
+      highlight: 'Pro tip: If grandma gives you food, take at least a little. Then say "Ó dùn púpọ̀!" (It\'s very delicious!). She will absolutely love this.'
+    }
+  },
+
+  // ─── UNIT 4: FOOD & HOME ───
+  {
+    id: 'food-home',
+    title: 'Food & Home',
+    subtitle: 'Eating together and life around the house',
+    emoji: '🍲',
+    vocab: [
+      { yoruba: 'Oúnjẹ', english: 'Food', phonetic: 'oh-OON-jeh', tones: [{s:'O',t:'mid'},{s:'ún',t:'high'},{s:'jẹ',t:'mid'}], context: 'General word for food. "Oúnjẹ ti ṣetán" = food is ready.' },
+      { yoruba: 'Ó dùn', english: 'It\'s delicious', phonetic: 'oh DOON', tones: [{s:'Ó',t:'high'},{s:'dùn',t:'low'}], context: 'Tell grandma this after eating! "Ó dùn púpọ̀" = very delicious.' },
+      { yoruba: 'Àmàlà', english: 'Amala (yam flour dish)', phonetic: 'AH-mah-lah', tones: [{s:'À',t:'low'},{s:'mà',t:'low'},{s:'là',t:'low'}], context: 'A beloved Yoruba staple made from yam flour. Served with various soups.' },
+      { yoruba: 'Ẹ̀wà', english: 'Beans', phonetic: 'EH-wah', tones: [{s:'Ẹ̀',t:'low'},{s:'wà',t:'low'}], context: 'Beans are a staple. "Ẹ̀wà àgọ̀yín" is a famous honey beans dish.' },
+      { yoruba: 'Ọbẹ̀', english: 'Soup / Stew', phonetic: 'OH-beh', tones: [{s:'Ọ',t:'mid'},{s:'bẹ̀',t:'low'}], context: 'Soups are eaten with fufu, amala, or pounded yam.' },
+      { yoruba: 'Ilé', english: 'House / Home', phonetic: 'ee-LEH', tones: [{s:'I',t:'mid'},{s:'lé',t:'high'}], context: '"Ilé wa" = our house. "Mo fẹ́ lọ sí ilé" = I want to go home.' },
+      { yoruba: 'Omi tútù', english: 'Cold water', phonetic: 'oh-MEE TOO-too', tones: [{s:'O',t:'mid'},{s:'mi',t:'mid'},{s:'tú',t:'high'},{s:'tù',t:'low'}], context: 'Very useful in hot weather! "Fún mi ní omi tútù, jọ̀wọ́" = give me cold water, please.' },
+      { yoruba: 'Jẹun', english: 'To eat', phonetic: 'JEH-oon', tones: [{s:'Jẹ',t:'mid'},{s:'un',t:'mid'}], context: '"Ẹ wá jẹun" = come and eat. You\'ll hear this a lot!' },
+      { yoruba: 'Ìdílé', english: 'Household / Family home', phonetic: 'EE-dee-leh', tones: [{s:'Ì',t:'low'},{s:'dí',t:'high'},{s:'lé',t:'high'}], context: 'Refers to the family compound or household.' },
+      { yoruba: 'Sùn', english: 'To sleep', phonetic: 'soon', tones: [{s:'Sùn',t:'low'}], context: '"Mo fẹ́ sùn" = I want to sleep. "Ó tó àkókò sùn" = it\'s time to sleep.' },
+    ],
+    dialogues: [
+      {
+        scene: 'Grandma calls you to come eat dinner.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Ọmọ mi, ẹ wá jẹun! Àmàlà àti ẹ̀fọ́ rírò ti ṣetán.', english: 'My child, come eat! Amala and vegetable soup is ready.' },
+          {
+            speaker: 'you', prompt: 'Respond to grandma:',
+            choices: [
+              { yoruba: 'Mo ń bọ̀, Màmá! Ẹ ṣé.', english: 'I\'m coming, Mama! Thank you.', correct: true },
+              { yoruba: 'Mo fẹ́ sùn', english: 'I want to sleep', correct: false },
+              { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ṣé ó dùn?', english: 'Is it delicious?' },
+          {
+            speaker: 'you', prompt: 'Compliment the food:',
+            choices: [
+              { yoruba: 'Ó dára', english: 'It\'s fine', correct: false },
+              { yoruba: 'Ó dùn púpọ̀, Màmá! Mo dúpẹ́.', english: 'Very delicious, Mama! I\'m grateful.', correct: true },
+              { yoruba: 'Ebi ń pa mí', english: 'I\'m hungry', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'Food Is Love in Yoruba Culture',
+      paragraphs: [
+        'In Yoruba homes, food is one of the primary ways love is expressed. When grandma cooks for you, she is showing deep care. Refusing food or not showing appreciation can unintentionally hurt feelings.',
+        'Many Yoruba dishes are eaten communally, sometimes from a shared bowl. Elders eat first or are served the best portions. When eating with your hands (the traditional way), always use your right hand.',
+        'Common staples include amala (yam flour), pounded yam (iyán), ẹ̀bà (cassava flour), and various soups like ẹ̀fọ́ rírò (vegetable soup), ẹ̀gúsí (melon seed soup), and gbẹ̀gìrì (bean soup). Learning to name these dishes will delight your grandma.',
+      ],
+      highlight: 'After eating, always say "Ẹ ṣé fún oúnjẹ, Màmá" (Thank you for the food, Mama). If you can add "Ó dùn gan-an!" (It was really delicious!), even better.'
+    }
+  },
+
+  // ─── UNIT 5: NUMBERS, TIME & PLACES ───
+  {
+    id: 'numbers-time',
+    title: 'Numbers, Time & Places',
+    subtitle: 'Counting, days, and getting around',
+    emoji: '🔢',
+    vocab: [
+      { yoruba: 'Ọ̀kan', english: 'One', phonetic: 'OH-kan', tones: [{s:'Ọ̀',t:'low'},{s:'kan',t:'mid'}], context: 'The number one. Yoruba counting is base-20 (vigesimal)!' },
+      { yoruba: 'Èjì', english: 'Two', phonetic: 'EH-jee', tones: [{s:'È',t:'low'},{s:'jì',t:'low'}], context: 'Two of something.' },
+      { yoruba: 'Ẹ̀ta', english: 'Three', phonetic: 'EH-tah', tones: [{s:'Ẹ̀',t:'low'},{s:'ta',t:'mid'}], context: 'The number three.' },
+      { yoruba: 'Ẹ̀rin', english: 'Four', phonetic: 'EH-reen', tones: [{s:'Ẹ̀',t:'low'},{s:'rin',t:'mid'}], context: 'The number four.' },
+      { yoruba: 'Àrún', english: 'Five', phonetic: 'AH-roon', tones: [{s:'À',t:'low'},{s:'rún',t:'high'}], context: 'Five. From here, numbers get more complex!' },
+      { yoruba: 'Ọjọ́', english: 'Day', phonetic: 'oh-JOH', tones: [{s:'Ọ',t:'mid'},{s:'jọ́',t:'high'}], context: '"Ọjọ́ wo ni?" = What day is it?' },
+      { yoruba: 'Ọ̀la', english: 'Tomorrow', phonetic: 'OH-lah', tones: [{s:'Ọ̀',t:'low'},{s:'la',t:'mid'}], context: '"Èmi yóò wá ní ọ̀la" = I will come tomorrow.' },
+      { yoruba: 'Àná', english: 'Yesterday', phonetic: 'AH-nah', tones: [{s:'À',t:'low'},{s:'ná',t:'high'}], context: '"Mo wá ní àná" = I came yesterday.' },
+      { yoruba: 'Ọjà', english: 'Market', phonetic: 'oh-JAH', tones: [{s:'Ọ',t:'mid'},{s:'jà',t:'low'}], context: 'Markets are central to Yoruba life. "Mo fẹ́ lọ sí ọjà" = I want to go to market.' },
+      { yoruba: 'Ibi', english: 'Place', phonetic: 'EE-bee', tones: [{s:'I',t:'mid'},{s:'bi',t:'mid'}], context: '"Ibi yìí dára" = This place is good.' },
+    ],
+    dialogues: [
+      {
+        scene: 'You and grandma are planning tomorrow.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Ṣé o máa wá ní ọ̀la?', english: 'Will you come tomorrow?' },
+          {
+            speaker: 'you', prompt: 'Tell her yes, you\'ll come tomorrow:',
+            choices: [
+              { yoruba: 'Bẹ́ẹ̀ ni, Màmá. Èmi yóò wá ní ọ̀la.', english: 'Yes, Mama. I will come tomorrow.', correct: true },
+              { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No', correct: false },
+              { yoruba: 'Mo wà dáadáa', english: 'I am fine', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ó dára! Ṣé o fẹ́ lọ sí ọjà pẹ̀lú mi?', english: 'Good! Do you want to go to market with me?' },
+          {
+            speaker: 'you', prompt: 'Accept her invitation:',
+            choices: [
+              { yoruba: 'Má bínú, Màmá', english: 'Sorry, Mama', correct: false },
+              { yoruba: 'Bẹ́ẹ̀ ni! Mo fẹ́ lọ pẹ̀lú rẹ, Màmá.', english: 'Yes! I want to go with you, Mama.', correct: true },
+              { yoruba: 'Ó dàbọ̀', english: 'Goodbye', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'The Yoruba Market Experience',
+      paragraphs: [
+        'Markets (ọjà) are the heartbeat of Yoruba communities. They\'re not just places to buy things — they are social hubs where news is shared, friendships are maintained, and business relationships span generations.',
+        'Going to market with grandma is a wonderful bonding experience. She likely knows every vendor, will negotiate prices with flair, and can teach you the names of ingredients, fabrics, and household items in Yoruba.',
+        'Yoruba traditionally uses a base-20 number system, which is mathematically fascinating but can be complex. For daily use, knowing 1-10 and being able to ask "Ẹ̀lo ni?" (How much?) will get you far in the market.',
+      ],
+      highlight: 'At the market, try asking "Ẹ̀lo ni èyí?" (How much is this?) while pointing at items. Grandma will be thrilled to see you using Yoruba in the real world.'
+    }
+  },
+
+  // ─── UNIT 6: PROVERBS & CULTURE ───
+  {
+    id: 'proverbs',
+    title: 'Proverbs & Deeper Talk',
+    subtitle: 'Wisdom, blessings, and meaningful phrases',
+    emoji: '📖',
+    vocab: [
+      { yoruba: 'Àṣẹ', english: 'Amen / Power / Authority', phonetic: 'AH-sheh', tones: [{s:'À',t:'low'},{s:'ṣẹ',t:'mid'}], context: 'Said after prayers and blessings. When grandma prays for you, say "Àṣẹ!"' },
+      { yoruba: 'Olúwa', english: 'God / Lord', phonetic: 'oh-LOO-wah', tones: [{s:'O',t:'mid'},{s:'lú',t:'high'},{s:'wa',t:'mid'}], context: 'References to God are common in everyday Yoruba speech.' },
+      { yoruba: 'Mo rí ọ̀', english: 'I see you / I acknowledge you', phonetic: 'moh ree oh', tones: [{s:'Mo',t:'mid'},{s:'rí',t:'high'},{s:'ọ̀',t:'low'}], context: 'A deep acknowledgement. When you say this to grandma, it means you truly see her.' },
+      { yoruba: 'Ọmọlúwàbí', english: 'Person of good character', phonetic: 'oh-moh-loo-WAH-bee', tones: [{s:'Ọ',t:'mid'},{s:'mọ',t:'mid'},{s:'lú',t:'high'},{s:'wà',t:'low'},{s:'bí',t:'high'}], context: 'The highest Yoruba compliment. Means a person of integrity and good upbringing.' },
+      { yoruba: 'Ẹ kú oríire', english: 'Congratulations', phonetic: 'eh koo oh-REE-reh', tones: [{s:'Ẹ',t:'mid'},{s:'kú',t:'high'},{s:'o',t:'mid'},{s:'rí',t:'high'},{s:'i',t:'mid'},{s:'re',t:'mid'}], context: 'Used for celebrations, achievements, and happy events.' },
+      { yoruba: 'Ọ̀rọ̀ tó dùn', english: 'Sweet/good words', phonetic: 'OH-roh toh doon', tones: [{s:'Ọ̀',t:'low'},{s:'rọ̀',t:'low'},{s:'tó',t:'high'},{s:'dùn',t:'low'}], context: 'When someone speaks well or says something nice.' },
+      { yoruba: 'Àlàáfíà', english: 'Peace / Good health', phonetic: 'ah-LAH-fee-ah', tones: [{s:'À',t:'low'},{s:'là',t:'low'},{s:'á',t:'high'},{s:'fí',t:'high'},{s:'à',t:'low'}], context: 'A greeting and a wish. "Àlàáfíà ni" = it is peaceful/all is well.' },
+      { yoruba: 'Ìrètí', english: 'Hope', phonetic: 'EE-reh-tee', tones: [{s:'Ì',t:'low'},{s:'rè',t:'low'},{s:'tí',t:'high'}], context: 'A beautiful concept. "Mo ní ìrètí" = I have hope.' },
+      { yoruba: 'Ìṣẹ́gun', english: 'Victory', phonetic: 'ee-SHEH-goon', tones: [{s:'Ì',t:'low'},{s:'ṣẹ́',t:'high'},{s:'gun',t:'mid'}], context: 'Used in prayers and blessings. "Ìṣẹ́gun ni ti wa" = Victory is ours.' },
+      { yoruba: 'Ọmọ tí a kò kọ́...', english: 'A child we didn\'t teach... (proverb start)', phonetic: 'oh-moh tee ah koh koh', tones: [{s:'Ọ',t:'mid'},{s:'mọ',t:'mid'},{s:'tí',t:'high'},{s:'a',t:'mid'},{s:'kò',t:'low'},{s:'kọ́',t:'high'}], context: 'Start of the proverb: "A child we didn\'t teach will sell the house that trained them." Education matters.' },
+    ],
+    dialogues: [
+      {
+        scene: 'Grandma is blessing you before you leave.',
+        steps: [
+          { speaker: 'grandma', yoruba: 'Olúwa á bùkún ọ, ọmọ mi.', english: 'God will bless you, my child.' },
+          {
+            speaker: 'you', prompt: 'Receive the blessing:',
+            choices: [
+              { yoruba: 'Àṣẹ, Màmá! Ẹ ṣé.', english: 'Amen, Mama! Thank you.', correct: true },
+              { yoruba: 'Ó dára', english: 'It\'s fine', correct: false },
+              { yoruba: 'Bẹ́ẹ̀ kọ́', english: 'No', correct: false },
+            ]
+          },
+          { speaker: 'grandma', yoruba: 'Ọmọlúwàbí ni ẹ. Inú mi dùn.', english: 'You are a person of good character. I am happy.' },
+          {
+            speaker: 'you', prompt: 'Tell grandma you love her and will return:',
+            choices: [
+              { yoruba: 'Mo nífẹ̀ẹ rẹ, Màmá. Èmi yóò padà wá.', english: 'I love you, Mama. I will come back.', correct: true },
+              { yoruba: 'Ẹ kú iṣẹ́', english: 'Greetings for your work', correct: false },
+              { yoruba: 'Ebi ń pa mí', english: 'I\'m hungry', correct: false },
+            ]
+          }
+        ]
+      }
+    ],
+    culture: {
+      title: 'Yoruba Proverbs: The Voice of the Elders',
+      paragraphs: [
+        'Yoruba proverbs (òwe) are considered the "horse of speech" — when a conversation loses its way, a proverb helps it find its path. Elders use proverbs to teach, warn, comfort, and connect. Understanding even a few will deepen your conversations with grandma tremendously.',
+        'Blessings are a central part of Yoruba elder-youth relationships. When an elder blesses you, always respond with "Àṣẹ" (Amen/So be it). These blessings are taken very seriously and are considered spiritually powerful.',
+        'The concept of "Ọmọlúwàbí" — being a person of good character — is perhaps the most important value in Yoruba culture. It encompasses honesty, respect, hard work, humility, and caring for community. When grandma calls you an Ọmọlúwàbí, it is the highest praise.',
+      ],
+      highlight: 'Before leaving grandma, kneel (or bow) and ask for her blessing: "Màmá, ẹ gbàdúrà fún mi" (Mama, pray for me). This is a profound moment of connection that she will treasure.'
+    }
+  }
+];
+
+
+// ═══════════════════════════════════════════════════════════
+// APP STATE & STORAGE
+// ═══════════════════════════════════════════════════════════
+
+const STORAGE_KEY = 'eko_yoruba_progress';
+
+function loadProgress() {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (data) return JSON.parse(data);
+  } catch(e) {}
+  return { completedLessons: {}, flashcardData: {}, quizScores: {}, streak: 0, lastVisit: null, wordsLearned: 0 };
+}
+
+function saveProgress(progress) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); } catch(e) {}
+}
+
+let progress = loadProgress();
+let currentView = 'home';
+let currentUnit = 0;
+let currentLesson = null;
+let vocabIndex = 0;
+let flashcardFlipped = false;
+let quizState = {};
+let dialogueState = {};
+
+// Update streak
+const today = new Date().toDateString();
+if (progress.lastVisit !== today) {
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  if (progress.lastVisit === yesterday) {
+    progress.streak++;
+  } else if (progress.lastVisit) {
+    progress.streak = 1;
+  } else {
+    progress.streak = 1;
+  }
+  progress.lastVisit = today;
+  saveProgress(progress);
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// SPEECH SYNTHESIS
+// ═══════════════════════════════════════════════════════════
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  // Try to find a Yoruba voice, fallback to default
+  const voices = window.speechSynthesis.getVoices();
+  const yorubaVoice = voices.find(v => v.lang && v.lang.startsWith('yo'));
+  if (yorubaVoice) {
+    utter.voice = yorubaVoice;
+    utter.lang = 'yo-NG';
+  } else {
+    utter.lang = 'yo-NG';
+  }
+  utter.rate = 0.8;
+  utter.pitch = 1;
+  window.speechSynthesis.speak(utter);
+}
+
+// Load voices
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+  speechSynthesis.getVoices();
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ═══════════════════════════════════════════════════════════
+
+const app = document.getElementById('app');
+
+function render() {
+  switch(currentView) {
+    case 'home': renderHome(); break;
+    case 'unit': renderUnit(); break;
+    case 'vocab': renderVocab(); break;
+    case 'flashcards': renderFlashcards(); break;
+    case 'quiz': renderQuiz(); break;
+    case 'dialogue': renderDialogue(); break;
+    case 'culture': renderCulture(); break;
+    case 'complete': renderComplete(); break;
+  }
+}
+
+function lessonKey(unitIdx, type) { return `${unitIdx}-${type}`; }
+
+function isLessonDone(unitIdx, type) {
+  return progress.completedLessons[lessonKey(unitIdx, type)] === true;
+}
+
+function markLessonDone(unitIdx, type) {
+  progress.completedLessons[lessonKey(unitIdx, type)] = true;
+  saveProgress(progress);
+}
+
+function getTotalWords() {
+  let count = 0;
+  CURRICULUM.forEach((unit, i) => {
+    if (isLessonDone(i, 'vocab') || isLessonDone(i, 'flashcards')) {
+      count += unit.vocab.length;
+    }
+  });
+  return count;
+}
+
+function getTotalLessons() {
+  return Object.keys(progress.completedLessons).filter(k => progress.completedLessons[k]).length;
+}
+
+function getOverallProgress() {
+  const total = CURRICULUM.length * 5; // 5 lessons per unit
+  const done = getTotalLessons();
+  return Math.round((done / total) * 100);
+}
+
+// ─── SVG Icons ───
+const ICONS = {
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>',
+  check: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>',
+  speaker: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/></svg>',
+};
+
+
+// ─── HOME ───
+function renderHome() {
+  const pct = getOverallProgress();
+  const words = getTotalWords();
+  const lessons = getTotalLessons();
+
+  app.innerHTML = `
+    <div class="header">
+      <div style="width:40px"></div>
+      <div class="header-title">Èkó Yorùbá</div>
+      <div class="header-streak">🔥 ${progress.streak}</div>
+    </div>
+    <div class="home fade-in">
+      <div class="home-hero">
+        <h1>Èkó Yorùbá</h1>
+        <p>Learn to speak with grandma</p>
+      </div>
+
+      <div class="progress-overview">
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress-bar-fill" style="width: ${pct}%"></div>
+          </div>
+          <span class="progress-label">${pct}%</span>
+        </div>
+        <div class="progress-stats">
+          <div class="progress-stat">
+            <div class="progress-stat-num">${words}</div>
+            <div class="progress-stat-label">Words</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-num">${lessons}</div>
+            <div class="progress-stat-label">Lessons</div>
+          </div>
+          <div class="progress-stat">
+            <div class="progress-stat-num">${progress.streak}</div>
+            <div class="progress-stat-label">Day Streak</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Your Journey</div>
+      ${CURRICULUM.map((unit, i) => {
+        const lessonTypes = ['vocab','flashcards','quiz','dialogue','culture'];
+        const doneCount = lessonTypes.filter(t => isLessonDone(i, t)).length;
+        const isLocked = i > 0 && lessonTypes.filter(t => isLessonDone(i-1, t)).length < 3;
+        return `
+          <div class="unit-card ${isLocked ? 'locked' : ''}" onclick="openUnit(${i})">
+            <div class="unit-card-header">
+              <span class="unit-num">Unit ${i+1}</span>
+              <span class="unit-emoji">${unit.emoji}</span>
+            </div>
+            <h3>${unit.title}</h3>
+            <p>${unit.subtitle}</p>
+            <div class="unit-lessons">
+              ${lessonTypes.map(t => `<div class="unit-lesson-dot ${isLessonDone(i,t) ? 'done' : ''}"></div>`).join('')}
+            </div>
+          </div>
+        `;
+      }).join('')}
+
+      <button class="review-btn" onclick="startReview()">🔄 Review All Learned Words</button>
+    </div>
+  `;
+}
+
+
+// ─── UNIT VIEW ───
+function openUnit(idx) {
+  currentUnit = idx;
+  currentView = 'unit';
+  render();
+}
+
+function renderUnit() {
+  const unit = CURRICULUM[currentUnit];
+  const lessons = [
+    { type: 'vocab', icon: 'vocab', title: 'Vocabulary', desc: `${unit.vocab.length} words to learn` },
+    { type: 'flashcards', icon: 'flash', title: 'Flashcards', desc: 'Review with spaced repetition' },
+    { type: 'quiz', icon: 'quiz', title: 'Quiz', desc: 'Test your knowledge' },
+    { type: 'dialogue', icon: 'dialogue', title: 'Conversation', desc: 'Practice with grandma' },
+    { type: 'culture', icon: 'culture', title: 'Culture Note', desc: 'Understand the context' },
+  ];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="goHome()">${ICONS.back}</button>
+      <div class="header-title">${unit.emoji} Unit ${currentUnit+1}</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="unit-view fade-in">
+      <div class="unit-view-header">
+        <h2>${unit.title}</h2>
+        <p>${unit.subtitle}</p>
+      </div>
+      ${lessons.map((l, i) => {
+        const done = isLessonDone(currentUnit, l.type);
+        const locked = i > 0 && !isLessonDone(currentUnit, lessons[i-1].type) && !done;
+        return `
+          <div class="lesson-card ${locked ? 'locked' : ''}" onclick="openLesson('${l.type}')">
+            <div class="lesson-icon ${done ? 'done' : l.icon}">
+              ${done ? '✓' : l.type === 'vocab' ? '📝' : l.type === 'flashcards' ? '🃏' : l.type === 'quiz' ? '❓' : l.type === 'dialogue' ? '💬' : '🌍'}
+            </div>
+            <div class="lesson-info">
+              <h4>${l.title}</h4>
+              <p>${l.desc}</p>
+            </div>
+            <div class="lesson-check ${done ? 'done' : ''}">
+              ${done ? ICONS.check : ''}
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function openLesson(type) {
+  currentLesson = type;
+  currentView = type;
+  vocabIndex = 0;
+  flashcardFlipped = false;
+
+  if (type === 'quiz') {
+    const unit = CURRICULUM[currentUnit];
+    const questions = generateQuiz(unit);
+    quizState = { questions, current: 0, answers: [], answered: false };
+  }
+
+  if (type === 'dialogue') {
+    dialogueState = { stepIndex: 0, messages: [], answered: false, done: false };
+  }
+
+  render();
+}
+
+
+// ─── VOCABULARY ───
+function renderVocab() {
+  const unit = CURRICULUM[currentUnit];
+  const word = unit.vocab[vocabIndex];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+      <div class="header-title">Vocabulary</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="vocab-view fade-in">
+      <div class="vocab-counter">${vocabIndex + 1} of ${unit.vocab.length}</div>
+
+      <div class="vocab-card">
+        <div class="vocab-yoruba">${word.yoruba}</div>
+        <div class="vocab-phonetic">/${word.phonetic}/</div>
+
+        <button class="speak-btn" onclick="speak('${word.yoruba.replace(/'/g, "\\'")}')">
+          ${ICONS.speaker}
+        </button>
+
+        <div class="vocab-english">${word.english}</div>
+        <div class="vocab-context">${word.context}</div>
+      </div>
+
+      <div class="tone-legend">
+        <div class="tone-legend-item"><div class="tone-legend-dot high"></div> High</div>
+        <div class="tone-legend-item"><div class="tone-legend-dot mid"></div> Mid</div>
+        <div class="tone-legend-item"><div class="tone-legend-dot low"></div> Low</div>
+      </div>
+
+      <div class="tone-display">
+        ${word.tones.map(t => `
+          <div class="tone-syllable">
+            <div class="tone-bar ${t.t}"></div>
+            <div class="tone-label">${t.s}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="vocab-nav">
+        ${vocabIndex > 0 ? `<button class="vocab-nav-btn" onclick="prevVocab()">← Back</button>` : ''}
+        ${vocabIndex < unit.vocab.length - 1
+          ? `<button class="vocab-nav-btn primary" onclick="nextVocab()">Next →</button>`
+          : `<button class="vocab-nav-btn primary" onclick="finishVocab()">Complete ✓</button>`
+        }
+      </div>
+    </div>
+  `;
+}
+
+function nextVocab() { vocabIndex++; render(); }
+function prevVocab() { vocabIndex--; render(); }
+function finishVocab() {
+  markLessonDone(currentUnit, 'vocab');
+  currentView = 'complete';
+  render();
+}
+
+
+// ─── FLASHCARDS ───
+function renderFlashcards() {
+  const unit = CURRICULUM[currentUnit];
+  const word = unit.vocab[vocabIndex];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+      <div class="header-title">Flashcards</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="vocab-view fade-in">
+      <div class="vocab-counter">${vocabIndex + 1} of ${unit.vocab.length}</div>
+
+      <div class="flashcard-area">
+        <div class="flashcard ${flashcardFlipped ? 'flipped' : ''}" onclick="flipCard()">
+          <div class="flashcard-front">
+            <div class="vocab-yoruba">${word.yoruba}</div>
+            <div class="vocab-phonetic">/${word.phonetic}/</div>
+            <button class="speak-btn" onclick="event.stopPropagation(); speak('${word.yoruba.replace(/'/g, "\\'")}')">
+              ${ICONS.speaker}
+            </button>
+            <div class="flashcard-tap">Tap to reveal</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="vocab-english" style="font-size: 24px;">${word.english}</div>
+            <div class="vocab-context" style="margin-top: 12px;">${word.context}</div>
+            <div class="tone-display" style="margin-top: 16px;">
+              ${word.tones.map(t => `
+                <div class="tone-syllable">
+                  <div class="tone-bar ${t.t}"></div>
+                  <div class="tone-label">${t.s}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      ${flashcardFlipped ? `
+        <div class="flashcard-btns">
+          <button class="flash-btn again" onclick="flashRate('again')">Again</button>
+          <button class="flash-btn hard" onclick="flashRate('hard')">Hard</button>
+          <button class="flash-btn good" onclick="flashRate('good')">Good</button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function flipCard() { flashcardFlipped = true; render(); }
+
+function flashRate(rating) {
+  const unit = CURRICULUM[currentUnit];
+  flashcardFlipped = false;
+  if (vocabIndex < unit.vocab.length - 1) {
+    vocabIndex++;
+    render();
+  } else {
+    markLessonDone(currentUnit, 'flashcards');
+    currentView = 'complete';
+    render();
+  }
+}
+
+
+// ─── QUIZ ───
+function generateQuiz(unit) {
+  const questions = [];
+  const vocab = [...unit.vocab];
+
+  // Shuffle
+  for (let i = vocab.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [vocab[i], vocab[j]] = [vocab[j], vocab[i]];
+  }
+
+  // Take up to 8 questions
+  const selected = vocab.slice(0, Math.min(8, vocab.length));
+
+  selected.forEach(word => {
+    // Random question type
+    const type = Math.random() > 0.5 ? 'yoruba-to-english' : 'english-to-yoruba';
+    const allWords = unit.vocab.filter(w => w !== word);
+    const shuffledOthers = allWords.sort(() => Math.random() - 0.5).slice(0, 3);
+
+    if (type === 'yoruba-to-english') {
+      const options = [
+        { text: word.english, correct: true },
+        ...shuffledOthers.map(w => ({ text: w.english, correct: false }))
+      ].sort(() => Math.random() - 0.5);
+      questions.push({ type, prompt: word.yoruba, options, speakText: word.yoruba });
+    } else {
+      const options = [
+        { text: word.yoruba, correct: true },
+        ...shuffledOthers.map(w => ({ text: w.yoruba, correct: false }))
+      ].sort(() => Math.random() - 0.5);
+      questions.push({ type, prompt: word.english, options, speakText: word.yoruba });
+    }
+  });
+
+  return questions;
+}
+
+function renderQuiz() {
+  const { questions, current, answers, answered } = quizState;
+
+  if (current >= questions.length) {
+    const correct = answers.filter(a => a).length;
+    markLessonDone(currentUnit, 'quiz');
+    app.innerHTML = `
+      <div class="header">
+        <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+        <div class="header-title">Quiz Results</div>
+        <div style="width:40px"></div>
+      </div>
+      <div class="complete-screen fade-in">
+        <div class="complete-emoji">${correct >= questions.length * 0.7 ? '🎉' : '💪'}</div>
+        <h2>${correct >= questions.length * 0.7 ? 'Ó dára púpọ̀!' : 'Keep Practicing!'}</h2>
+        <p>You got ${correct} out of ${questions.length} correct</p>
+        <div class="vocab-nav">
+          <button class="vocab-nav-btn" onclick="openLesson('quiz')">Try Again</button>
+          <button class="vocab-nav-btn primary" onclick="backToUnit()">Continue</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const q = questions[current];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+      <div class="header-title">Quiz</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="quiz-view fade-in">
+      <div class="quiz-progress">
+        ${questions.map((_, i) => `
+          <div class="quiz-dot ${i < current ? (answers[i] ? 'correct' : 'wrong') : i === current ? 'current' : ''}"></div>
+        `).join('')}
+      </div>
+
+      <div class="quiz-question">
+        <div class="quiz-question-label">${q.type === 'yoruba-to-english' ? 'What does this mean?' : 'How do you say this in Yoruba?'}</div>
+        <div class="quiz-question-text">${q.prompt}</div>
+        ${q.type === 'yoruba-to-english' ? `
+          <button class="speak-btn" style="margin-top:16px" onclick="speak('${q.speakText.replace(/'/g, "\\'")}')">
+            ${ICONS.speaker}
+          </button>
+        ` : ''}
+      </div>
+
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `
+          <button class="quiz-option ${answered ? (opt.correct ? 'correct' : (quizState.selectedIdx === i ? 'wrong' : '')) : ''} ${answered ? 'disabled' : ''}"
+            onclick="answerQuiz(${i}, ${opt.correct})">
+            ${opt.text}
+          </button>
+        `).join('')}
+      </div>
+
+      ${answered ? `
+        <div class="quiz-feedback ${quizState.lastCorrect ? 'correct' : 'wrong'}">
+          ${quizState.lastCorrect ? 'Ó dára! Correct! ✓' : 'Not quite — keep learning! ✗'}
+        </div>
+        <button class="quiz-next" onclick="nextQuiz()">Continue</button>
+      ` : ''}
+    </div>
+  `;
+}
+
+function answerQuiz(idx, correct) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  quizState.selectedIdx = idx;
+  quizState.lastCorrect = correct;
+  quizState.answers.push(correct);
+  render();
+}
+
+function nextQuiz() {
+  quizState.current++;
+  quizState.answered = false;
+  render();
+}
+
+
+// ─── DIALOGUE ───
+function renderDialogue() {
+  const unit = CURRICULUM[currentUnit];
+  const dialogue = unit.dialogues[0];
+  const { stepIndex, messages, answered, done } = dialogueState;
+
+  if (done) {
+    markLessonDone(currentUnit, 'dialogue');
+    app.innerHTML = `
+      <div class="header">
+        <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+        <div class="header-title">Conversation</div>
+        <div style="width:40px"></div>
+      </div>
+      <div class="complete-screen fade-in">
+        <div class="complete-emoji">💬</div>
+        <h2>Conversation Complete!</h2>
+        <p>You practiced talking with grandma!</p>
+        <div class="vocab-nav">
+          <button class="vocab-nav-btn primary" onclick="backToUnit()">Continue</button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const currentStep = dialogue.steps[stepIndex];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+      <div class="header-title">Conversation</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="dialogue-view fade-in">
+      <div class="dialogue-scene">
+        <div class="dialogue-scene-label">Scene</div>
+        <p>${dialogue.scene}</p>
+      </div>
+
+      <div class="dialogue-messages">
+        ${messages.map(m => `
+          <div class="dialogue-msg ${m.speaker}">
+            <div class="msg-speaker">${m.speaker === 'grandma' ? '👵 Grandma' : '🙋 You'}</div>
+            <div>${m.yoruba}</div>
+            <div class="msg-translation">${m.english}</div>
+          </div>
+        `).join('')}
+
+        ${currentStep && currentStep.speaker === 'grandma' && !messages.find(m => m.yoruba === currentStep.yoruba) ? `
+          <div class="dialogue-msg grandma">
+            <div class="msg-speaker">👵 Grandma</div>
+            <div>${currentStep.yoruba}</div>
+            <div class="msg-translation">${currentStep.english}</div>
+            <button class="speak-btn" style="margin:8px auto 0;width:40px;height:40px;" onclick="speak('${currentStep.yoruba.replace(/'/g, "\\'")}')">
+              ${ICONS.speaker}
+            </button>
+          </div>
+        ` : ''}
+      </div>
+
+      ${currentStep && currentStep.speaker === 'you' && !answered ? `
+        <div class="dialogue-choices">
+          <label>${currentStep.prompt}</label>
+          ${currentStep.choices.map((c, i) => `
+            <div class="dialogue-choice" onclick="dialogueChoose(${i}, ${c.correct})">
+              <div class="choice-yoruba">${c.yoruba}</div>
+              <div class="choice-english">${c.english}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      ${answered ? `
+        <button class="quiz-next" onclick="dialogueNext()">Continue</button>
+      ` : ''}
+    </div>
+  `;
+
+  // Auto-advance for grandma messages
+  if (currentStep && currentStep.speaker === 'grandma' && !messages.find(m => m.yoruba === currentStep.yoruba)) {
+    setTimeout(() => {
+      dialogueState.messages.push({
+        speaker: 'grandma',
+        yoruba: currentStep.yoruba,
+        english: currentStep.english
+      });
+      dialogueState.stepIndex++;
+      render();
+    }, 800);
+  }
+}
+
+function dialogueChoose(idx, correct) {
+  if (dialogueState.answered) return;
+  const unit = CURRICULUM[currentUnit];
+  const dialogue = unit.dialogues[0];
+  const step = dialogue.steps[dialogueState.stepIndex];
+  const choice = step.choices[idx];
+
+  dialogueState.messages.push({
+    speaker: 'you',
+    yoruba: choice.yoruba,
+    english: choice.english
+  });
+  dialogueState.stepIndex++;
+  dialogueState.answered = true;
+
+  // Highlight correct/wrong
+  const choiceEls = document.querySelectorAll('.dialogue-choice');
+  step.choices.forEach((c, i) => {
+    if (c.correct) choiceEls[i]?.classList.add('correct');
+    else if (i === idx && !correct) choiceEls[i]?.classList.add('wrong');
+  });
+
+  setTimeout(() => render(), 300);
+}
+
+function dialogueNext() {
+  const unit = CURRICULUM[currentUnit];
+  const dialogue = unit.dialogues[0];
+  dialogueState.answered = false;
+
+  if (dialogueState.stepIndex >= dialogue.steps.length) {
+    dialogueState.done = true;
+  }
+  render();
+}
+
+
+// ─── CULTURE ───
+function renderCulture() {
+  const unit = CURRICULUM[currentUnit];
+  const culture = unit.culture;
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="backToUnit()">${ICONS.back}</button>
+      <div class="header-title">Culture Note</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="culture-view fade-in">
+      <div class="culture-card">
+        <h3>${culture.title}</h3>
+        ${culture.paragraphs.map(p => `<p>${p}</p>`).join('')}
+        <div class="culture-highlight">
+          <p><strong>💡 ${culture.highlight}</strong></p>
+        </div>
+      </div>
+      <button class="vocab-nav-btn primary" style="width:100%;padding:16px;" onclick="finishCulture()">I've Read This ✓</button>
+    </div>
+  `;
+}
+
+function finishCulture() {
+  markLessonDone(currentUnit, 'culture');
+  currentView = 'complete';
+  render();
+}
+
+
+// ─── COMPLETION ───
+function renderComplete() {
+  const unit = CURRICULUM[currentUnit];
+  const lessonTypes = ['vocab','flashcards','quiz','dialogue','culture'];
+  const done = lessonTypes.filter(t => isLessonDone(currentUnit, t)).length;
+
+  app.innerHTML = `
+    <div class="header">
+      <div style="width:40px"></div>
+      <div class="header-title">Lesson Complete</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="complete-screen fade-in">
+      <div class="complete-emoji">🎊</div>
+      <h2>Ó dára púpọ̀!</h2>
+      <p>Great work! You're making progress in "${unit.title}"</p>
+      <div class="complete-stats">
+        <div class="complete-stat">
+          <div class="complete-stat-num">${done}/5</div>
+          <div class="complete-stat-label">Lessons Done</div>
+        </div>
+        <div class="complete-stat">
+          <div class="complete-stat-num">${getTotalWords()}</div>
+          <div class="complete-stat-label">Words Learned</div>
+        </div>
+      </div>
+      <div class="vocab-nav">
+        <button class="vocab-nav-btn" onclick="goHome()">Home</button>
+        <button class="vocab-nav-btn primary" onclick="backToUnit()">Continue Unit</button>
+      </div>
+    </div>
+  `;
+}
+
+
+// ─── REVIEW MODE ───
+function startReview() {
+  // Collect all words from completed units
+  const allWords = [];
+  CURRICULUM.forEach((unit, i) => {
+    if (isLessonDone(i, 'vocab')) {
+      allWords.push(...unit.vocab);
+    }
+  });
+
+  if (allWords.length === 0) {
+    alert('Complete some vocabulary lessons first!');
+    return;
+  }
+
+  // Shuffle
+  for (let i = allWords.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allWords[i], allWords[j]] = [allWords[j], allWords[i]];
+  }
+
+  // Use the first unit's slot temporarily with all words
+  currentUnit = 0;
+  currentView = 'flashcards';
+  vocabIndex = 0;
+  flashcardFlipped = false;
+
+  // Temporarily override the curriculum for review
+  window._reviewWords = allWords;
+  window._reviewMode = true;
+
+  renderReviewFlashcards();
+}
+
+function renderReviewFlashcards() {
+  const words = window._reviewWords;
+  if (!words || vocabIndex >= words.length) {
+    window._reviewMode = false;
+    window._reviewWords = null;
+    currentView = 'home';
+    render();
+    return;
+  }
+
+  const word = words[vocabIndex];
+
+  app.innerHTML = `
+    <div class="header">
+      <button class="header-back" onclick="exitReview()">${ICONS.back}</button>
+      <div class="header-title">Review</div>
+      <div style="width:40px"></div>
+    </div>
+    <div class="vocab-view fade-in">
+      <div class="vocab-counter">${vocabIndex + 1} of ${words.length}</div>
+
+      <div class="flashcard-area">
+        <div class="flashcard ${flashcardFlipped ? 'flipped' : ''}" onclick="flipReviewCard()">
+          <div class="flashcard-front">
+            <div class="vocab-yoruba">${word.yoruba}</div>
+            <div class="vocab-phonetic">/${word.phonetic}/</div>
+            <button class="speak-btn" onclick="event.stopPropagation(); speak('${word.yoruba.replace(/'/g, "\\'")}')">
+              ${ICONS.speaker}
+            </button>
+            <div class="flashcard-tap">Tap to reveal</div>
+          </div>
+          <div class="flashcard-back">
+            <div class="vocab-english" style="font-size: 24px;">${word.english}</div>
+            <div class="vocab-context" style="margin-top: 12px;">${word.context}</div>
+            <div class="tone-display" style="margin-top: 16px;">
+              ${word.tones.map(t => `
+                <div class="tone-syllable">
+                  <div class="tone-bar ${t.t}"></div>
+                  <div class="tone-label">${t.s}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      ${flashcardFlipped ? `
+        <div class="flashcard-btns">
+          <button class="flash-btn again" onclick="reviewRate('again')">Again</button>
+          <button class="flash-btn hard" onclick="reviewRate('hard')">Hard</button>
+          <button class="flash-btn good" onclick="reviewRate('good')">Good</button>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+function flipReviewCard() { flashcardFlipped = true; renderReviewFlashcards(); }
+
+function reviewRate(r) {
+  flashcardFlipped = false;
+  vocabIndex++;
+  renderReviewFlashcards();
+}
+
+function exitReview() {
+  window._reviewMode = false;
+  window._reviewWords = null;
+  goHome();
+}
+
+
+// ─── NAVIGATION ───
+function goHome() { currentView = 'home'; render(); }
+function backToUnit() { currentView = 'unit'; render(); }
+
+
+// Override render for review mode
+const originalRender = render;
+render = function() {
+  if (window._reviewMode && currentView === 'flashcards') {
+    renderReviewFlashcards();
+    return;
+  }
+  originalRender();
+};
+
+// ─── INIT ───
+render();
+</script>
+</body>
+</html>
